@@ -1,0 +1,50 @@
+[
+  {
+    "key": "gemm/mps/fp32/bs8",
+    "per_iter": {
+      "reported_median_ms": 5.31516651972197,
+      "loop_wall_ms_per_iter": 5.3129358403384686
+    },
+    "none": {
+      "reported_median_ms": 0.022583495592698455,
+      "loop_wall_ms_per_iter": 5.017965839942917
+    },
+    "underreport_factor": 235.35623605764707
+  },
+  {
+    "key": "mlp/mps/fp32/bs32",
+    "per_iter": {
+      "reported_median_ms": 0.6687499990221113,
+      "loop_wall_ms_per_iter": 0.6737758405506611
+    },
+    "none": {
+      "reported_median_ms": 0.14912549522705376,
+      "loop_wall_ms_per_iter": 0.391015000641346
+    },
+    "underreport_factor": 4.484477976109274
+  },
+  {
+    "key": "resnet18/mps/fp16/bs8",
+    "per_iter": {
+      "reported_median_ms": 11.862604471389204,
+      "loop_wall_ms_per_iter": 11.863385820761323
+    },
+    "none": {
+      "reported_median_ms": 11.395312001695856,
+      "loop_wall_ms_per_iter": 11.427934999810532
+    },
+    "underreport_factor": 1.0410074309175392
+  },
+  {
+    "key": "transformer/mps/fp32/bs8",
+    "per_iter": {
+      "reported_median_ms": 18.840937496861443,
+      "loop_wall_ms_per_iter": 18.883423340739682
+    },
+    "none": {
+      "reported_median_ms": 1.0836040310095996,
+      "loop_wall_ms_per_iter": 17.24019584013149
+    },
+    "underreport_factor": 17.387289967265296
+  }
+]

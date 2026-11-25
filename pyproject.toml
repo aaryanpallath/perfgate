@@ -1,0 +1,49 @@
+[project]
+name = "perfgate"
+version = "0.1.0"
+description = "Automated PyTorch inference benchmark sweeps with statistically gated regression checks"
+readme = "README.md"
+authors = [
+    { name = "Aaryan Pallath", email = "pallathaaryan1@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.5",
+    "pyyaml>=6.0.4",
+    "torch>=2.15.0",
+    "torchvision>=0.29.2",
+]
+
+[project.scripts]
+perfgate = "perfgate.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.11.18,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.6",
+]
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+# CI runs on CPU-only Linux runners; PyPI's default Linux torch wheel pulls in several GB of
+# CUDA libraries. macOS keeps the PyPI wheel (which includes MPS).
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+torchvision = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]

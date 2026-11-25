@@ -1,0 +1,14 @@
+# Full sweep used for results/sweep_m4.jsonl (Apple M4: CPU vs Apple GPU via MPS).
+name: m4-sweep
+repeats: 5
+warmup: 10
+iters: 50
+matrix:
+  workload: [gemm, mlp, resnet18, transformer]
+  device: [cpu, mps]
+  dtype: [fp32, fp16]
+  batch: [1, 8, 32]
+exclude:
+  # CPU fp16 kernels are a slow fallback path on ARM (ResNet-18 bs1 took ~510 ms vs a few
+  # ms in fp32 in a smoke test); not a meaningful benchmark target.
+  - {device: cpu, dtype: fp16}

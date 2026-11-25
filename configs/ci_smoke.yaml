@@ -1,0 +1,10 @@
+# Tiny CPU sweep run in CI so the end-to-end path is exercised on every push.
+name: ci-smoke
+repeats: 3
+warmup: 2
+iters: 10
+matrix:
+  workload: [gemm, mlp]
+  device: [cpu]
+  dtype: [fp32]
+  batch: [1]
